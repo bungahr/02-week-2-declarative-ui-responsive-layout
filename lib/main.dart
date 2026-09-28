@@ -14,14 +14,14 @@ class RuangKitaApp extends StatefulWidget {
 }
 
 class _RuangKitaAppState extends State<RuangKitaApp> {
-  ThemeMode modeTema = ThemeMode.light;
+  ThemeMode themeMode = ThemeMode.light;
 
-  void gantiTema() {
+  void changeTheme() {
     setState(() {
-      if (modeTema == ThemeMode.light) {
-        modeTema = ThemeMode.dark;
+      if (themeMode == ThemeMode.light) {
+        themeMode = ThemeMode.dark;
       } else {
-        modeTema = ThemeMode.light;
+        themeMode = ThemeMode.light;
       }
     });
   }
@@ -31,7 +31,18 @@ class _RuangKitaAppState extends State<RuangKitaApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'RuangKita',
-      themeMode: modeTema,
+
+      // builder: (context, child) {
+      //   return MediaQuery(
+      //     data: MediaQuery.of(context).copyWith(
+      //       textScaler: const TextScaler.linear(
+      //         1.5,
+      //       ), // <-- INI YANG BIKIN JADI 1.5× SECARA PAKSA
+      //     ),
+      //     child: child!,
+      //   );
+      // },
+      // // SAMPAI SINI
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -39,6 +50,7 @@ class _RuangKitaAppState extends State<RuangKitaApp> {
           brightness: Brightness.light,
         ),
       ),
+
       darkTheme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -46,9 +58,12 @@ class _RuangKitaAppState extends State<RuangKitaApp> {
           brightness: Brightness.dark,
         ),
       ),
+
+      themeMode: themeMode,
+
       home: LabKomputerPage(
-        modeGelap: modeTema == ThemeMode.dark,
-        onGantiTema: gantiTema,
+        onThemeChanged: changeTheme,
+        isDarkMode: themeMode == ThemeMode.dark,
       ),
     );
   }

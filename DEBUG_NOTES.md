@@ -4,18 +4,16 @@
 
 ### Gejala
 
-Saat saya menambahkan fitur Light Mode dan Dark Mode, muncul error saat
-menjalankan `flutter analyze`.
+Pas saya menambahkan fitur Light Mode dan Dark Mode, muncul error saat menjalankan perintah `flutter analyze` di terminal.
 
-Error yang muncul adalah:
+Error yang muncul seperti ini:
 
 ```text
 The named parameter 'onThemeChanged' isn't defined.
 The named parameter 'isDarkMode' isn't defined.
 ```
 
-Tombol untuk mengganti tema juga belum bisa digunakan karena halaman Lab
-Komputer belum menerima fungsi untuk mengubah tema dari `main.dart`.
+Tombol buat mengganti temanya juga belum bisa dipakai karena halaman Lab Komputer belum menerima fungsi untuk mengubah tema yang dikirim dari file `main.dart`.
 
 ### Screenshot Sebelum Perbaikan
 
@@ -23,24 +21,20 @@ Komputer belum menerima fungsi untuk mengubah tema dari `main.dart`.
 
 ### Dugaan Penyebab
 
-Di kode awal, halaman masih menggunakan class `LabKomputer`. Class tersebut
-belum memiliki parameter `onThemeChanged` dan `isDarkMode`.
+Di kode awal, halaman utama aplikasinya masih menggunakan class `LabKomputer`. Class ini ternyata belum dibuatkan parameter `onThemeChanged` dan `isDarkMode`. 
 
-Sedangkan di `main.dart`, saya sudah mengirim dua parameter tersebut ke
-halaman utama. Karena parameter pada class belum dibuat, Flutter menampilkan
-error.
+Sementara itu, di file `main.dart` saya sudah telanjur mengirimkan kedua parameter tersebut ke halaman utama. Karena parameter di class tujuan belum ada, makanya Flutter memunculkan error itu.
 
 ### Perubahan Kode
 
-Saya mengganti nama class menjadi `LabKomputerPage` dan menambahkan dua
-parameter berikut:
+Saya mengganti nama class menjadi `LabKomputerPage` dan menambahkan dua parameter baru seperti ini:
 
 ```dart
 final VoidCallback onThemeChanged;
 final bool isDarkMode;
 ```
 
-Saya juga menambahkan constructor berikut:
+Saya juga menambahkan bagian constructor-nya:
 
 ```dart
 const LabKomputerPage({
@@ -50,7 +44,7 @@ const LabKomputerPage({
 });
 ```
 
-Setelah itu, saya menambahkan tombol untuk mengganti tema di bagian AppBar.
+Setelah itu, baru saya pasang tombol buat mengganti tema di bagian AppBar:
 
 ```dart
 IconButton(
@@ -67,8 +61,7 @@ IconButton(
 
 ### Hasil
 
-Tombol Light/Dark Mode sudah muncul di AppBar. Saat tombol ditekan, tampilan
-aplikasi bisa berubah dari Light Mode ke Dark Mode atau sebaliknya.
+Sekarang tombol Light/Dark Mode sudah muncul di bagian AppBar. Pas tombolnya diklik, tampilan tema aplikasi bisa langsung berubah dari mode terang ke mode gelap atau sebaliknya.
 
 ---
 
@@ -76,9 +69,7 @@ aplikasi bisa berubah dari Light Mode ke Dark Mode atau sebaliknya.
 
 ### Gejala
 
-Pada card, badge status seperti `Berlangsung` berada di kanan atas. Pada
-tampilan awal, badge terlalu dekat dengan nama lab sehingga tulisan nama lab
-bisa tertutup atau kurang jelas dibaca.
+Di dalam komponen card, badge status seperti tulisan `Berlangsung` diletakkan di pojok kanan atas. Pada tampilan awal, badge ini posisinya terlalu dekat dengan nama lab, jadi tulisan nama lab-nya malah ketutup dan agak susah dibaca.
 
 ### Screenshot Sebelum Perbaikan
 
@@ -86,9 +77,7 @@ bisa tertutup atau kurang jelas dibaca.
 
 ### Dugaan Penyebab
 
-Badge dibuat menggunakan `Stack` dan `Positioned` di kanan atas, tetapi bagian
-teks nama lab belum diberi ruang khusus. Akibatnya, badge dan teks nama lab
-bisa bertabrakan saat ukuran card lebih sempit.
+Badge status ini dibuat pakai widget `Stack` dan `Positioned` di kanan atas, tapi bagian teks nama lab-nya belum diberi jarak aman. Efeknya, badge status dan teks nama lab jadi bertabrakan pas ukuran card-nya lagi sempit.
 
 ### Kode Bagian yang Terkait
 
@@ -104,8 +93,7 @@ Positioned(
 
 ### Perubahan Kode
 
-Saya menambahkan ruang di sebelah kanan teks menggunakan `Padding`. Tujuannya
-agar teks nama lab tidak masuk ke bagian badge status.
+Saya memberikan jarak di sebelah kanan teks nama lab menggunakan widget `Padding`. Tujuannya supaya teks nama lab-nya tidak meluber masuk ke area badge status.
 
 ```dart
 Expanded(
@@ -125,8 +113,7 @@ Expanded(
 )
 ```
 
-Badge tetap menggunakan `Stack` dan `Positioned` karena itu merupakan salah
-satu syarat pada tugas.
+Untuk badge statusnya sendiri tetap saya pertahankan pakai `Stack` dan `Positioned` karena memang itu salah satu syarat wajib di tugas ini.
 
 ### Screenshot Sesudah Perbaikan
 
@@ -134,5 +121,4 @@ satu syarat pada tugas.
 
 ### Hasil
 
-Badge status tetap berada di kanan atas card, tetapi nama lab tidak tertutup
-dan lebih mudah dibaca.
+Posisi badge status tetap berada di pojok kanan atas card, tapi sekarang nama lab-nya sudah aman tidak ketutup lagi dan jadi jauh lebih gampang dibaca.

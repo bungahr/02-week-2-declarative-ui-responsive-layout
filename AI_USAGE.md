@@ -10,19 +10,19 @@
 ---
 
 ## 2. Alat / Model AI yang Dipakai
-Saya menggunakan **ChatGPT** sebagai asisten pemrograman selama pengerjaan tugas Flutter Modul 02 ini.
+Saya menggunakan **ChatGPT** untuk membantu saya sebagai asisten coding selama menyelesaikan tugas Flutter Modul 02 ini.
 
 ---
 
 ## 3. Tujuan Penggunaan AI
-* Membantu memahami instruksi tugas Modul 02 dan menentukan struktur folder proyek.
-* Mempelajari konsep dasar `StatefulWidget`, `setState()`, dan cara kerja `LayoutBuilder` untuk membuat layout yang responsif.
-* Membantu mencari solusi dan penyebab ketika terjadi error saat menjalankan perintah `flutter analyze`.
+* Membantu memahami apa saja instruksi di tugas Modul 02 dan menentukan struktur folder proyek.
+* Mempelajari cara kerja `StatefulWidget`, fungsi `setState()`, dan bagaimana `LayoutBuilder` dipakai untuk membuat tampilan responsif.
+* Membantu mencari tahu penyebab error dan solusinya ketika saya menjalankan perintah `flutter analyze`.
 
 ---
 
 ## 4. Ringkasan Prompt
-Beberapa contoh pertanyaan/prompt yang saya ajukan kepada AI:
+Beberapa contoh pertanyaan yang saya ajukan ke ChatGPT:
 * *"Bantu saya membuat model RoomSession dan data lokal untuk aplikasi Lab Komputer sesuai ketentuan tugas."*
 * *"Bagaimana cara menggunakan LayoutBuilder dan constraints.maxWidth untuk membagi kolom grid menjadi responsif?"*
 * *"Muncul error parameter onThemeChanged dan isDarkMode belum tersedia di kelas halaman utama, bagaimana cara memperbaikinya?"*
@@ -31,19 +31,23 @@ Beberapa contoh pertanyaan/prompt yang saya ajukan kepada AI:
 ---
 
 ## 5. Bagian Kode yang Terpengaruh
-* **`lib/models/room_session.dart`**: Pembuatan struktur model data dan enum status ruangan.
-* **`lib/main.dart`**: Konfigurasi tema Light/Dark Mode dengan `ColorScheme.fromSeed`.
-* **`lib/modul02/studi_kasus/lab_komputer.dart`**: Implementasi filter menggunakan `Wrap` dan `ChoiceChip`, layout grid responsif dengan `LayoutBuilder`, serta pembuatan struktur kartu informasi menggunakan `Stack` dan `Positioned`.
+* **`lib/models/room_session.dart`**: Pembuatan bagian model data dan pilihan status untuk ruangan lab.
+* **`lib/main.dart`**: Pengaturan tema Light Mode dan Dark Mode memakai skema `ColorScheme.fromSeed`.
+* **`lib/modul02/studi_kasus/lab_komputer.dart`**: Pembuatan filter status memakai `Wrap` dan `ChoiceChip`, pengaturan grid responsif memakai `LayoutBuilder`, dan desain kartu informasi lab memakai `Stack` serta `Positioned`.
 
 ---
 
 ## 6. Apa yang Saya Ubah Setelah Menerima Saran AI
-Setelah berdiskusi dengan AI dan mendapatkan saran perbaikan, saya memodifikasi kodenya secara mandiri sebagai berikut:
-1. **Perbaikan Parameter Tema:** Saya mengubah nama class menjadi `LabKomputerPage` dan menambahkan parameter `onThemeChanged` serta `isDarkMode` agar tombol ganti tema di halaman utama bisa terhubung langsung dengan logika di `main.dart`. Langkah ini berhasil menyelesaikan masalah error pada `flutter analyze`.
-2. **Penyesuaian Jarak Teks (Badge):** Saya menambahkan `Padding` kanan pada widget teks di dalam kartu ruangan agar teks nama lab otomatis terpotong titik tiga (`ellipsis`) sebelum menabrak badge status yang ada di pojok kanan atas.
-3. **Pembatasan Lebar Web:** Saya membungkus struktur grid utama menggunakan widget `Center` dan `ConstrainedBox` dengan batas maksimal 1200 dp agar ukuran kartu tidak melar terlalu lebar saat dibuka di browser web laptop.
+Setelah berdiskusi dengan ChatGPT dan melihat contoh kodenya, saya menyesuaikan dan mengubah beberapa bagian kode secara mandiri:
+1. **Memperbaiki Parameter Tema:** Saya mengubah nama class menjadi `LabKomputerPage` dan menambahkan parameter `onThemeChanged` serta `isDarkMode`. Ini saya lakukan agar tombol ganti tema di halaman utama bisa terhubung langsung dengan logika di file `main.dart`. Langkah ini berhasil membuat error di `flutter analyze` hilang.
+2. **Menyesuaikan Jarak Teks Kartu:** Saya menambahkan `Padding` di sebelah kanan pada bagian teks nama lab di dalam card. Tujuannya agar teks yang terlalu panjang otomatis terpotong menjadi titik tiga (`ellipsis`) sebelum menabrak badge status di pojok kanan atas.
+3. **Membatasi Lebar Layar Web:** Saya membungkus konten grid utama memakai widget `Center` dan `ConstrainedBox` dengan batas maksimal 1200 dp. Ini saya lakukan agar ketika aplikasi dibuka di browser laptop atau web yang layarnya lebar, ukuran kartu tidak melar terlalu lebar.
 
 ---
 
 ## 7. Pernyataan Penutup
-Meskipun saya mendapatkan saran kode dari AI, **saya tetap mengetik, melakukan pengujian jalannya aplikasi di perangkat/browser secara mandiri, dan memahami secara penuh cara kerja setiap baris kode** yang ada di dalam proyek RuangKita ini.
+Meskipun saya melihat saran dan contoh kode dari ChatGPT, **saya tetap mengetik kodenya sendiri, mencoba jalannya aplikasi di perangkat atau browser secara mandiri, dan memahami penuh cara kerja dari setiap baris kode** yang ada di proyek RuangKita ini.
+
+---
+
+**Tautan Riwayat Chat ChatGPT:** [Klik di sini untuk melihat chat](https://chatgpt.com/share/6abafd41-f6c8-83ec-a428-329f0b206f1d)

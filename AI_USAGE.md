@@ -46,7 +46,14 @@ Setelah berdiskusi dengan ChatGPT dan melihat contoh kodenya, saya menyesuaikan 
 ---
 
 ## 7. Pernyataan Penutup
-Meskipun saya melihat saran dan contoh kode dari ChatGPT, **saya tetap mengetik kodenya sendiri, mencoba jalannya aplikasi di perangkat atau browser secara mandiri, dan memahami penuh cara kerja dari setiap baris kode** yang ada di proyek RuangKita ini.
+
+Saya menggunakan ChatGPT sebagai bantuan saat memahami materi,
+mencari penyebab error, dan melihat contoh penyelesaian. Setelah itu
+saya menyesuaikan kode dengan tugas yang saya kerjakan dan menguji
+hasilnya sendiri menggunakan Flutter.
+
+Saya juga melakukan perubahan pada kode setelah menemukan error,
+terutama pada bagian tema, responsive layout, dan posisi badge.
 
 ---
 

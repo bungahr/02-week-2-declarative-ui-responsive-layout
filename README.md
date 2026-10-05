@@ -12,35 +12,35 @@
 ## 2. Ringkasan Arsitektur Widget dan Alasan Menggunakan StatefulWidget
 
 ### Ringkasan Arsitektur Widget
-Aplikasi RuangKita ini dibuat pakai widget bawaan Flutter SDK tanpa package tambahan. Susunan widgetnya seperti ini:
-* Di bagian paling luar, saya pakai `Center` dan `ConstrainedBox` biar pas dibuka di web/laptop tampilannya nggak melar ke samping.
-* Untuk bagian atas (header), saya pakai `Card` buat nampilin biodata saya, isinya ada `Row`, `Column`, sama `CircleAvatar`.
-* Buat tombol filternya, saya pakai widget `Wrap` dan `ChoiceChip` biar tombolnya bisa menyesuaikan lebar layar.
-* Konten utamanya dibungkus pakai `LayoutBuilder` buat ngatur responsif, lalu di dalamnya ada `GridView.builder` buat nampilin daftar lab.
-* Bagian kartu lab (card) dibuat pakai `Card`, `InkWell` biar bisa diklik, serta `Row` dan `Column` buat atur posisi teks. Biar teksnya nggak berantakan, saya pakai `Expanded`. Terus di pojok kanan atas kartu, saya pasang badge status pake `Stack` dan `Positioned`.
+Aplikasi RuangKita ini dibuat pakai widget bawaan dari Flutter SDK. Susunan widget yang saya gunakan yaitu:
+* Di bagian paling luar, saya pakai `Center` dan `ConstrainedBox` supaya pas dibuka di web atau laptop tampilannya tidak melar ke samping.
+* Untuk bagian header atas, saya pakai `Card` buat menampilkan biodata saya, yang di dalamnya ada susunan `Row`, `Column`, dan `CircleAvatar`.
+* Buat bagian tombol filter status, saya pakai widget `Wrap` dan `ChoiceChip` agar tombolnya bisa otomatis turun ke bawah kalau layarnya sempit.
+* Konten utamanya dibungkus pakai widget `LayoutBuilder` buat mengatur responsif layarnya, lalu di dalamnya ada `GridView.builder` buat memunculkan daftar lab.
+* Untuk desain kartu informasi lab (card), saya pakai `Card` dan `InkWell` biar bisa diklik. Di dalamnya ada `Row` dan `Column` buat atur posisi teks, serta widget `Expanded` biar teksnya aman. Lalu di pojok kanan atas kartu, saya pasang badge status pakai widget `Stack` dan `Positioned`.
 
 ### Alasan Menggunakan StatefulWidget
-Saya pakai `StatefulWidget` di halaman utama karena ada bagian tampilan yang harus bisa berubah-ubah pas aplikasi dipakai, contohnya:
-1. **Filter Status Ruangan:** Pas kita klik tombol `ChoiceChip`, pilihan filternya bakal berubah pakai `setState()`. Setelah itu daftar card lab yang muncul bakal ikut berubah sesuai filter tanpa harus restart aplikasi.
-2. **Ganti Tema (Light/Dark Mode):** Tombol di AppBar bisa mengubah warna aplikasi dari mode terang ke mode gelap secara langsung.
-3. **Switch Pengingat:** Tombol sakelar "Ingatkan saya" yang ada di dalam bottom sheet bisa diaktifkan atau dimatikan oleh pengguna.
+Saya memilih pakai `StatefulWidget` di halaman utama karena ada beberapa bagian tampilan yang harus bisa berubah-ubah pas aplikasi sedang dijalankan, contohnya:
+1. **Filter Status Ruangan:** Pas pengguna klik pilihan tombol `ChoiceChip`, nilai filternya bakal berubah pakai `setState()`. Setelah itu, daftar card lab yang muncul di layar akan langsung ikut berubah sesuai filter tanpa harus menjalankan ulang aplikasi dari awal.
+2. **Ganti Tema (Light/Dark Mode):** Tombol di bagian AppBar bisa dipakai buat mengubah warna tema aplikasi secara langsung dari mode terang ke mode gelap.
+3. **Switch Pengingat:** Tombol sakelar "Ingatkan saya" yang ada di dalam bottom sheet bisa diaktifkan atau dimatikan secara langsung oleh pengguna.
 
 ---
 
 ## 3. Tabel Tiga Breakpoint Layout Responsif
 
-Jumlah kolom pada daftar lab komputer diatur otomatis berdasarkan lebar layar (`constraints.maxWidth`) lewat widget `LayoutBuilder`:
+Jumlah kolom pada daftar kartu lab komputer diatur secara otomatis berdasarkan lebar layar yang tersedia (`constraints.maxWidth`) lewat widget `LayoutBuilder`:
 
-| Ukuran Layar | Jumlah Kolom | Widget yang Digunakan | Alasan |
+| Ukuran Layar | Jumlah Kolom | Widget yang Digunakan | Alasan Penggunaan |
 | :--- | :---: | :--- | :--- |
-| **Kurang dari 600 dp** | 1 Kolom | `LayoutBuilder`, `GridView`, `Card` | Biar card tetap kelihatan jelas dan nyaman dibaca di layar HP yang kecil. |
-| **600 sampai 839 dp** | 2 Kolom | `LayoutBuilder`, `GridView`, `Card` | Biar bisa memanfaatkan layar tablet yang lebih lebar tanpa bikin card-nya kelihatan sempit. |
-| **840 dp atau lebih** | 3 Kolom | `LayoutBuilder`, `GridView`, `Card` | Biar bisa nampilin lebih banyak card dalam satu baris pas dibuka di layar komputer/web yang luas. |
+| **Kurang dari 600 dp** | 1 Kolom | `LayoutBuilder`, `GridView`, `Card` | Supaya card tetap kelihatan jelas dan nyaman dibaca pas dibuka di layar HP yang kecil. |
+| **600 sampai 839 dp** | 2 Kolom | `LayoutBuilder`, `GridView`, `Card` | Memanfaatkan ruang layar tablet yang lebih lebar tanpa membuat card-nya kelihatan terlalu sempit. |
+| **840 dp atau lebih** | 3 Kolom | `LayoutBuilder`, `GridView`, `Card` | Menampilkan lebih banyak card dalam satu baris pas aplikasi dibuka di layar komputer atau web yang luas. |
 
 ---
 
 ## 4. Empat Screenshot Running Aplikasi
-Ini adalah foto bukti pas aplikasi RuangKita dijalankan:
+Berikut adalah foto bukti pas aplikasi RuangKita dijalankan:
 
 ### Mobile - Light Mode
 ![Mobile Light](screenshots/01_mobile_light.png)
@@ -64,10 +64,10 @@ Ini adalah foto bukti pas aplikasi RuangKita dijalankan:
 ## 6. Jawaban Refleksi
 
 ### (1) Mengapa Expanded membantu Text di dalam Row?
-Menurut saya, `Expanded` itu membantu banget karena bikin `Text` bisa dapat sisa ruang yang ada di dalam `Row`. Kalau teks kegiatannya terlalu panjang dan nggak dikasih batas ruang pake `Expanded`, layout aplikasinya bisa rusak atau error nabrak batas layar (overflow). Di aplikasi ini, saya juga tambahkan `maxLines` dan `TextOverflow.ellipsis` biar teks yang kepanjangan otomatis dipotong rapi dan diganti titik-titik `...` biar card-nya tetap bagus.
+Menurut saya, widget `Expanded` itu membantu sekali karena membuat `Text` bisa mendapatkan sisa ruang kosong yang tersedia di dalam `Row`. Kalau teks kegiatannya terlalu panjang dan tidak diberi batas ruang pakai `Expanded`, teks tersebut bakal memanjang terus ke kanan sampai keluar layar dan menyebabkan error nabrak batas (overflow). Di aplikasi ini, saya juga tambahkan properti `maxLines` dan `TextOverflow.ellipsis` supaya teks yang kepanjangan otomatis terpotong rapi menjadi titik-titik `...` agar tampilan card tetap bagus.
 
 ### (2) Mengapa LayoutBuilder lebih tepat untuk layout lokal daripada hanya MediaQuery?
-Saya pilih `LayoutBuilder` karena widget ini bisa melihat ukuran ruang asli yang tersedia di bagian layout yang lagi dibuat. Dengan `LayoutBuilder`, saya bisa pakai `constraints.maxWidth` buat menentukan jumlah kolom card secara lokal. Jadi kalau ukuran ruangnya berubah, perubahan kolomnya langsung diterapkan di grid lab itu sendiri. Kalau cuma pakai `MediaQuery`, yang dibaca adalah ukuran total satu layar HP, jadi kurang pas buat ngatur grid yang ada di dalam halaman.
+Saya memilih `LayoutBuilder` karena widget ini bisa melihat ukuran ruang asli yang tersedia di bagian tata letak yang sedang kita buat. Dengan `LayoutBuilder`, saya bisa pakai variabel `constraints.maxWidth` buat menentukan jumlah kolom card secara lokal. Jadi kalau ukuran ruangnya berubah, perubahan jumlah kolomnya langsung diterapkan di grid lab itu sendiri. Kalau cuma pakai `MediaQuery`, yang dibaca adalah ukuran total satu layar HP secara keseluruhan, jadi kurang pas buat mengatur grid yang posisinya ada di dalam sub-halaman.
 
 ### (3) Apa yang berubah pada widget tree ketika setState() dipanggil?
-Saat kita panggil `setState()`, Flutter bakal menjalankan ulang fungsi `build()` pada `StatefulWidget` tersebut. Di dalam susunan widget (*widget tree*), widget yang butuh data baru bakal dibuat ulang. Contohnya di aplikasi saya, pas pengguna klik `ChoiceChip`, nilai filternya berubah. Setelah `setState()` jalan, grid yang menampilkan daftar card lab bakal dibangun kembali biar isi card-nya berubah sesuai status filter yang baru saja dipilih.
+Saat kita memanggil fungsi `setState()`, Flutter bakal menjalankan ulang fungsi `build()` pada `StatefulWidget` tersebut. Di dalam susunan widget (*widget tree*), bagian halaman atau widget anak yang membutuhkan data baru akan dibuat ulang. Contohnya di aplikasi saya, pas pengguna klik tombol `ChoiceChip`, nilai filternya berubah. Setelah `setState()` jalan, grid yang menampilkan daftar card lab bakal dibangun kembali supaya isi card yang muncul di layar langsung berubah sesuai status filter yang baru saja dipilih.

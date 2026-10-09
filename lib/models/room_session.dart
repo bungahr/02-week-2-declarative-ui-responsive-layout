@@ -30,7 +30,7 @@ List<RoomSession> dataRuangan = [
   ),
   RoomSession(
     namaRuang: 'Lab Pemrograman B',
-    kegiatan: 'Praktikum Algortima dan Struktur Data',
+    kegiatan: 'Praktikum Algoritma dan Struktur Data',
     kategori: 'Pemrograman',
     waktu: '10:00 - 12:00',
     status: 'Akan Datang',

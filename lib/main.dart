@@ -37,12 +37,12 @@ class _RuangKitaAppState extends State<RuangKitaApp> {
       //     data: MediaQuery.of(context).copyWith(
       //       textScaler: const TextScaler.linear(
       //         1.5,
-      //       ), // <-- INI YANG BIKIN JADI 1.5× SECARA PAKSA
+      //       ),
       //     ),
       //     child: child!,
       //   );
       // },
-      // // SAMPAI SINI
+      //
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
